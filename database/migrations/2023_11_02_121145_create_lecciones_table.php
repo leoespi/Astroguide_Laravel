@@ -16,6 +16,7 @@ class CreateLeccionesTable extends Migration
         Schema::create('lecciones', function (Blueprint $table) {
             $table->id();
             $table->text('Nombre_de_la_leccion');
+            $table->text('Contenido');
             $table->integer('Lecciones_Diarias_realizadas');
             $table->integer('Lecciones_Totales_realizadas');
             $table->text('Tipo_de_leccion');

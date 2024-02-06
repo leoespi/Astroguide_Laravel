@@ -30,6 +30,7 @@ class LeccionesApiController extends Controller
     {
         $lecciones = new Lecciones();
         $lecciones->Nombre_de_la_leccion= $request->Nombre_de_la_leccion;
+        $lecciones->contenido = $request -> contenido;
         $lecciones->Lecciones_Diarias_realizadas= $request->Lecciones_Diarias_realizadas;
         $lecciones->Lecciones_Totales_realizadas= $request->Lecciones_Totales_realizadas;
         $lecciones->Tipo_de_leccion= $request->Tipo_de_leccion;
@@ -61,6 +62,7 @@ class LeccionesApiController extends Controller
     {
         $lecciones = Lecciones::find($id);
         $lecciones->Nombre_de_la_leccion= $request->Nombre_de_la_leccion;
+        $lecciones->contenido = $request -> contenido;
         $lecciones->Lecciones_Diarias_realizadas= $request->Lecciones_Diarias_realizadas;
         $lecciones->Lecciones_Totales_realizadas= $request->Lecciones_Totales_realizadas;
         $lecciones->Tipo_de_leccion= $request->Tipo_de_leccion;
