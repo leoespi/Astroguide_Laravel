@@ -23,4 +23,14 @@ class Quiz extends Model
     ];
 
     public $timestamps = false;
+
+    public function leccion()
+    {
+        return $this->hasOne(Lecciones::class);
+    }
+
+    public function logro()
+    {
+        return $this->hasOne(Logros::class);
+    }
 }
