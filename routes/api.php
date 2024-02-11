@@ -9,6 +9,9 @@ use App\Http\Controllers\API\UserApiController;
 use App\Http\Controllers\API\RolApiController;
 use App\Http\Controllers\API\RespuestasApiController;
 use App\Http\Controllers\API\LogroApiController;
+use App\Http\Controllers\Auth\AuthenticationController;
+use App\Http\Controllers\Feed\FeedController;
+
 
 
 /*
@@ -27,28 +30,24 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('quiz', QuizApiController::class);
-Route::apiResource('foro', ForoApiController::class);
 Route::apiResource('lecciones', LeccionesApiController::class);
 Route::apiResource('user', UserApiController::class);
 Route::apiResource('rol', RolApiController::class);
-Route::apiResource('respuestas', RespuestasApiController::class);
 Route::apiResource('logro', LogroApiController::class);
+Route::get('/feeds', [FeedController::class, 'index'])->middleware('auth:sanctum');
+Route::post('/feed/store', [FeedController::class, 'store'])->middleware('auth:sanctum');
+Route::post('/feed/like/{feed_id}', [FeedController::class, 'likePost'])->middleware('auth:sanctum');
+Route::post('/feed/comment/{feed_id}', [FeedController::class, 'comment'])->middleware('auth:sanctum');
+Route::get('/feed/comments/{feed_id}', [FeedController::class, 'getComments'])->middleware('auth:sanctum');
 
-
-Route::get('api/respuestas-foro/{foroId}', [RespuestasApiController::class,'hola']);
-
-
-
-Route::group(['prefix' => 'auth','namespace' => 'App\Http\Controllers',],
-     function () {
-        Route::post('login', 'AuthController@login');
-        Route::post('signup', 'AuthController@signUp');
-        Route::group(['middleware' => 'auth:api'],
-            
-        function() {
-            Route::get('logout', 'AuthController@logout');
-            Route::get('user', 'AuthController@user');
-    });
+Route::get('/test', function () {
+    return response([
+        'message' => 'Api is working'
+    ], 200);
 });
+
+Route::post('register', [AuthenticationController::class, 'register']);
+Route::post('login', [AuthenticationController::class, 'login']);
+
 
 
