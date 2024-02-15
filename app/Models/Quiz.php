@@ -16,10 +16,20 @@ class Quiz extends Model
         "Titulo",
         "Duracion",
         "Pregunta",
-        "Respuesta1",
+        "RespuestaCorrecta",
         "Respuesta2",
         "Respuesta3",
         "Respuesta4",
+        "Pregunta2",
+        "RespuestaCorrecta2",
+        "REspuesta2",
+        "REspuesta3",
+        "REspuesta4",
+        "Pregunta3",
+        "RespuestaCorrecta3",
+        "respuesta2",
+        "respuesta3",
+        "respuesta4",
     ];
 
     public $timestamps = false;
