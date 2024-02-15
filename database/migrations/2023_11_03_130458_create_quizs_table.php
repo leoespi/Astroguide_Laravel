@@ -23,6 +23,17 @@ class CreateQuizsTable extends Migration
             $table->text('Respuesta2');
             $table->text('Respuesta3');
             $table->text('Respuesta4');
+            $table->text('Pregunta2');
+            $table->text('RespuestaCorrecta2');
+            $table->text('REspuesta2');
+            $table->text('REspuesta3');
+            $table->text('REspuesta4');
+            $table->text('Pregunta');
+            $table->text('RespuestaCorrecta3');
+            $table->text('respuesta2');
+            $table->text('respuesta3');
+            $table->text('respuesta4');
+            
             $table->timestamps();
             
 
