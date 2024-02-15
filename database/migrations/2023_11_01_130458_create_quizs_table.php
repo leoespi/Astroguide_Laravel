@@ -14,18 +14,15 @@ class CreateQuizsTable extends Migration
     public function up()
     {
         Schema::create('quizs', function (Blueprint $table) {
-            
             $table->id();
             $table->text('Titulo');
             $table->integer('Duracion');
             $table->text('Pregunta');
-            $table->text('Respuesta1');
+            $table->text('RespuestaCorrecta');
             $table->text('Respuesta2');
             $table->text('Respuesta3');
             $table->text('Respuesta4');
             $table->timestamps();
-            
-
         });
     }
 
