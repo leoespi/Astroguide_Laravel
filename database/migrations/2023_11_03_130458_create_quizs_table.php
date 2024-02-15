@@ -19,7 +19,7 @@ class CreateQuizsTable extends Migration
             $table->text('Titulo');
             $table->integer('Duracion');
             $table->text('Pregunta');
-            $table->text('Respuesta1');
+            $table->text('RespuestaCorrecta');
             $table->text('Respuesta2');
             $table->text('Respuesta3');
             $table->text('Respuesta4');

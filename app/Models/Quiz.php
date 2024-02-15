@@ -16,7 +16,7 @@ class Quiz extends Model
         "Titulo",
         "Duracion",
         "Pregunta",
-        "Respuesta1",
+        "RespuestaCorrecta",
         "Respuesta2",
         "Respuesta3",
         "Respuesta4",
