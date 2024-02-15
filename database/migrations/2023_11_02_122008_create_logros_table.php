@@ -17,8 +17,8 @@ class CreateLogrosTable extends Migration
             $table->id();
             $table->text('Nombre_del_Logro');
             $table->text('Rareza');
-            $table->foreignId('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('quiz_id')->constrained('quizs')->onDelete('cascade');
             $table->timestamps();
         });
     }
