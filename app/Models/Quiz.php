@@ -20,6 +20,16 @@ class Quiz extends Model
         "Respuesta2",
         "Respuesta3",
         "Respuesta4",
+        "Pregunta2",
+        "RespuestaCorrecta2",
+        "Respuesta5",
+        "Respuesta6",
+        "Respuesta7",
+        "Pregunta3",
+        "RespuestaCorrecta3",
+        "Respuesta8",
+        "Respuesta9",
+        "Respuesta10",
     ];
 
     public $timestamps = false;
