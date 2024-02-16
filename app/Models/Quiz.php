@@ -22,14 +22,14 @@ class Quiz extends Model
         "Respuesta4",
         "Pregunta2",
         "RespuestaCorrecta2",
-        "REspuesta2",
-        "REspuesta3",
-        "REspuesta4",
+        "Respuesta5",
+        "Respuesta6",
+        "Respuesta7",
         "Pregunta3",
         "RespuestaCorrecta3",
-        "respuesta2",
-        "respuesta3",
-        "respuesta4",
+        "Respuesta8",
+        "Respuesta9",
+        "Respuesta10",
     ];
 
     public $timestamps = false;
