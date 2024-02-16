@@ -32,6 +32,8 @@ class CreateQuizsTable extends Migration
             $table->text('Respuesta8');
             $table->text('Respuesta9');
             $table->text('Respuesta10');
+            $table->foreignId('logros_id');
+
             
             $table->timestamps();
         });

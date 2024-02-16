@@ -13,7 +13,7 @@ class Logros extends Model
 
     public function users(){
         return $this->belongsToMany(User::class, 'user_id', 'id');
-    }
+    }    
 
     public function quiz()
     {
