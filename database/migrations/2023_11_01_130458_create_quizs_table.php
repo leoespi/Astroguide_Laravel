@@ -32,10 +32,10 @@ class CreateQuizsTable extends Migration
             $table->text('Respuesta8');
             $table->text('Respuesta9');
             $table->text('Respuesta10');
-            $table->foreignId('logros_id');
-
-            
+            $table->unsignedBigInteger('logro_id')->nullable();
             $table->timestamps();
+        
+            $table->foreign('logro_id')->references('id')->on('logros')->onDelete('cascade');
         });
     }
 
@@ -46,6 +46,10 @@ class CreateQuizsTable extends Migration
      */
     public function down()
     {
+        Schema::table('quizs', function (Blueprint $table) {
+            $table->dropForeign(['logro_id']);
+        });
+
         Schema::dropIfExists('quizs');
     }
 }

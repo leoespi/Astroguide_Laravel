@@ -56,4 +56,36 @@ class QuizApiController extends Controller
         return response()->json($quizs);
         
     }
+
+    public function validarQuizterminado(Request $request)
+{
+    // Obtener el ID del quiz y la respuesta del cliente
+    $quizId = $request->input('quiz_id');
+    $respuestaCliente = $request->input('respuesta_cliente');
+
+    // Buscar el quiz por su ID
+    $quiz = Quiz::find($quizId);
+
+    // Verificar si el quiz existe
+    if (!$quiz) {
+        return response()->json(['error' => 'El quiz no existe'], 404);
+    }
+
+    $respuestasCorrectas = [
+        $quiz->RespuestaCorrecta,
+        $quiz->RespuestaCorrecta2, 
+        $quiz->RespuestaCorrecta3
+    ];
+
+    $quizTerminadoCorrectamente = true;
+    foreach ($respuestasCliente as $respuestaCliente) {
+        if (!in_array($respuestaCliente, $respuestasCorrectas)) {
+            $quizTerminadoCorrectamente = false;
+            break; // Si una respuesta del cliente no es correcta, el quiz no está terminado correctamente
+        }
+    }
+
+    return response()->json(['quiz_terminado_correctamente' => $quizTerminadoCorrectamente]);
+}
+
 }

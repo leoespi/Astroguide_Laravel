@@ -18,9 +18,10 @@ class CreateLogrosTable extends Migration
             $table->text('Nombre_del_Logro');
             $table->text('Rareza');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('quiz_id')->constrained('quizs')->onDelete('cascade');
             $table->timestamps();
         });
+        
+
     }
 
     /**
@@ -30,6 +31,7 @@ class CreateLogrosTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('logro_quiz');
         Schema::dropIfExists('logros');
     }
 }
