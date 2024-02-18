@@ -12,11 +12,14 @@ class Logros extends Model
     public $timestamps = false;
 
     public function users(){
-        return $this->belongsToMany(User::class, 'user_id', 'id');
+        return $this->
+        
+        
+        belongsToMany(User::class, 'user_id', 'id');
     }    
 
     public function quiz()
     {
-        return $this->belongsTo(Quiz::class);
+        return $this->belongsTo(Quiz::class, 'quiz_id', 'id');
     }
 }

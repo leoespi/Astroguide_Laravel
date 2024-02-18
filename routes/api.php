@@ -48,6 +48,8 @@ Route::get('/test', function () {
 
 Route::post('register', [AuthenticationController::class, 'register']);
 Route::post('login', [AuthenticationController::class, 'login']);
+Route::post('quizs/validarQuizterminado', 'App\Http\Controllers\API\QuizApiController@validarQuizterminado');
+
 
 
 
