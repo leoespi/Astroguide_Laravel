@@ -43,4 +43,11 @@ class Quiz extends Model
     {
         return $this->hasOne(Logros::class);
     }
+
+    public function logros()
+    {
+        return $this->belongsToMany(Logro::class);
+    }
 }
+
+

@@ -18,8 +18,8 @@ class Logros extends Model
         belongsToMany(User::class, 'user_id', 'id');
     }    
 
-    public function quiz()
+    public function quizzes()
     {
-        return $this->belongsTo(Quiz::class, 'quiz_id', 'id');
+        return $this->belongsToMany(Quiz::class);
     }
 }
