@@ -19,4 +19,8 @@ class Logros extends Model
     {
         return $this->belongsTo(Quiz::class);
     }
+    public function quizzes()
+    {
+        return $this->belongsToMany(Quiz::class);
+    }
 }
