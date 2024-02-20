@@ -57,35 +57,40 @@ class QuizApiController extends Controller
         
     }
 
-    public function validarQuizterminado(Request $request)
-{
+    public function validarTerminacion(Request $request)
+    {
     // Obtener el ID del quiz y la respuesta del cliente
     $quizId = $request->input('quiz_id');
-    $respuestaCliente = $request->input('respuesta_cliente');
-
+    $respuestasClientes = $request->input('respuestas_clientes');
     // Buscar el quiz por su ID
     $quiz = Quiz::find($quizId);
+    $respuestasCorrectas = [$quiz->RespuestaCorrecta,
+                             $quiz->RespuestaCorrecta2,
+                              $quiz->RespuestaCorrecta3];
 
     // Verificar si el quiz existe
     if (!$quiz) {
         return response()->json(['error' => 'El quiz no existe'], 404);
     }
+    $quizTerminadoCorrectamente = false;
+        //foreach($respuestasCorrectas as $re){
+            if($respuestasCorrectas == $respuestasClientes){
+                $quizTerminadoCorrectamente = true;
+        Quiz_logro::where('quiz_id', $quiz_id)->first();
+        $idlogro = Quiz_logro::where('quiz_id', $quiz_id)->first()->logro_id();
+          LogroUser::create([
+            "user_id" => $request->user_id,
+          "logro_id"=>$idlogro
+          ]);
+    }   
 
-    $respuestasCorrectas = [
-        $quiz->RespuestaCorrecta,
-        $quiz->RespuestaCorrecta2, 
-        $quiz->RespuestaCorrecta3
-    ];
 
-    $quizTerminadoCorrectamente = true;
-    foreach ($respuestasCliente as $respuestaCliente) {
-        if (!in_array($respuestaCliente, $respuestasCorrectas)) {
-            $quizTerminadoCorrectamente = false;
-            break; // Si una respuesta del cliente no es correcta, el quiz no está terminado correctamente
-        }
+
+    // Retornar el resultado de la validación
+    return response()->json(['quiz_terminado_correctamente' => $quizTerminadoCorrectamente]);
     }
 
-    return response()->json(['quiz_terminado_correctamente' => $quizTerminadoCorrectamente]);
+    
 }
 
-}
+
