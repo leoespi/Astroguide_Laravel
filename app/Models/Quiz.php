@@ -41,13 +41,10 @@ class Quiz extends Model
 
     public function logro()
     {
-        return $this->hasOne(Logros::class);
+        return $this->hasOne(QuizLogro::class);
     }
 
-    public function logros()
-    {
-        return $this->belongsToMany(Logro::class);
-    }
+    
 }
 
 

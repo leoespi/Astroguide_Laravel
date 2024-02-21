@@ -19,6 +19,8 @@ class CreateLogrosTable extends Migration
             $table->text('Rareza');
             $table->timestamps();
         });
+        
+
     }
 
     /**
@@ -28,6 +30,7 @@ class CreateLogrosTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('logro_quiz');
         Schema::dropIfExists('logros');
     }
 }
