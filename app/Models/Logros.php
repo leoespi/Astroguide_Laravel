@@ -15,7 +15,7 @@ class Logros extends Model
         return $this->
         
         
-        belongsToMany(User::class, 'user_id', 'id');
+        belongsToMany(User::class, 'logro_user', 'logro_id', 'user_id');
     }    
 
     public function quiz()

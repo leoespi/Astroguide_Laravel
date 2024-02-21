@@ -22,7 +22,7 @@ class QuizLogro extends Model
 
     public function logro()
     {
-        return $this->belongsTo(Logro::class);
+        return $this->belongsTo(Logros::class);
     }   
 
 

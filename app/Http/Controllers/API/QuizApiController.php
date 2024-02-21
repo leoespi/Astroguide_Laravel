@@ -7,6 +7,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Models\Quiz; // Importa el modelo Quiz
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 
 class QuizApiController extends Controller
@@ -81,10 +82,13 @@ class QuizApiController extends Controller
             if($respuestasCorrectas == $respuestasClientes){
                 $quizTerminadoCorrectamente = true;
         
-    }   
-    $logro = $quiz -> logros -> logro;
+    }
+    if ($quizTerminadoCorrectamente) {
+        $logro = $quiz -> logro -> logro;
     $user = Auth::user();
-    $logro->attach($user->id);
+    $logro->users()->syncWithoutDetaching($user->id);
+    }  
+    
     // Retorna el resultado
     return response()->json(['quiz_terminado_correctamente' => $quizTerminadoCorrectamente]);
     }
