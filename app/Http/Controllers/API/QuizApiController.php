@@ -7,6 +7,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Models\Quiz; // Importa el modelo Quiz
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 
 class QuizApiController extends Controller
@@ -46,7 +47,12 @@ class QuizApiController extends Controller
         $quizs->save();
         return response()->json($user);
         
+    }
 
+    public function show($id)
+    {
+        $quizs = Quiz::find($id);
+        return response()->json($quizs, 200);
     }
 
     public function destroy($id)
@@ -59,34 +65,31 @@ class QuizApiController extends Controller
 
     public function validarTerminacion(Request $request)
     {
-    // Obtener el ID del quiz y la respuesta del cliente
+    // Traer el id del quiz y la respuesta del usuario
     $quizId = $request->input('quiz_id');
     $respuestasClientes = $request->input('respuestas_clientes');
-    // Buscar el quiz por su ID
+    // BUSCAR QUIZ
     $quiz = Quiz::find($quizId);
     $respuestasCorrectas = [$quiz->RespuestaCorrecta,
                              $quiz->RespuestaCorrecta2,
                               $quiz->RespuestaCorrecta3];
 
-    // Verificar si el quiz existe
+    // quiz existe??
     if (!$quiz) {
         return response()->json(['error' => 'El quiz no existe'], 404);
     }
     $quizTerminadoCorrectamente = false;
-        //foreach($respuestasCorrectas as $re){
             if($respuestasCorrectas == $respuestasClientes){
                 $quizTerminadoCorrectamente = true;
-        Quiz_logro::where('quiz_id', $quiz_id)->first();
-        $idlogro = Quiz_logro::where('quiz_id', $quiz_id)->first()->logro_id();
-          LogroUser::create([
-            "user_id" => $request->user_id,
-          "logro_id"=>$idlogro
-          ]);
-    }   
-
-
-
-    // Retornar el resultado de la validación
+        
+    }
+    if ($quizTerminadoCorrectamente) {
+        $logro = $quiz -> logro -> logro;
+    $user = Auth::user();
+    $logro->users()->syncWithoutDetaching($user->id);
+    }  
+    
+    // Retorna el resultado
     return response()->json(['quiz_terminado_correctamente' => $quizTerminadoCorrectamente]);
     }
 

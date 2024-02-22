@@ -48,4 +48,4 @@ Route::get('/test', function () {
 
 Route::post('register', [AuthenticationController::class, 'register']);
 Route::post('login', [AuthenticationController::class, 'login']);
-Route::post('quiz/validarTerminacion', [QuizApiController::class, 'validarTerminacion']);
+Route::post('quiz/validarTerminacion', [QuizApiController::class, 'validarTerminacion'])->middleware('auth:api');
