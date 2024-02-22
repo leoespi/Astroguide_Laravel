@@ -8,9 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class Lecciones extends Model
 {
     use HasFactory;
+
+    protected $table = "lecciones";
+
+    protected $fillable = [
+        "Nombre_de_la_leccion",
+        "Contenido",
+        "Lecciones_Diarias_realizadas",
+        "Lecciones_Totales_realizadas",
+        "Tipo_de_leccion",
+        
+    ];
+
+
+
+
     public function quiz()
     {
-        return $this->belongsTo(Quiz::class);
+        return $this->hasOne(Quiz::class);
     }
 
     public function users()
