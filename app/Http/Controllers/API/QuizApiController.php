@@ -6,15 +6,27 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Models\Quiz; // Importa el modelo Quiz
+use App\Models\QuizLogro; // Importa el modelo Quiz
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class QuizApiController extends Controller
 {
     public function index()
     {
-        $quizs =  Quiz::all();
+        $user = Auth::user();
+        $logros = DB::table('logro_user')->where('user_id', $user->id)->pluck('logro_id')
+        ->all();
+        /*$logros_ = Logros::where('user_id', $user->id)->pluck('id')
+        ->all();*/
+        //return response()->json($logros, 200);
+
+        
+        $quizlogros = QuizLogro::whereIn('logro_id', $logros)->pluck('quiz_id')
+        ->all();;
+        $quizs =  Quiz::whereNotIn('id', $quizlogros)->get();
         return response()->json($quizs, 200);
     }
 
