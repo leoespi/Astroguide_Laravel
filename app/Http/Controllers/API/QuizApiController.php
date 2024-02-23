@@ -7,6 +7,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Models\Quiz; // Importa el modelo Quiz
 use App\Models\QuizLogro; // Importa el modelo Quiz
+use App\Models\Logros;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -96,7 +97,8 @@ class QuizApiController extends Controller
         
     }
     if ($quizTerminadoCorrectamente) {
-        $logro = $quiz -> logro -> logro;
+        //$logro = $quiz -> logro -> logro;
+        $logro = Logros::find($quiz->logro_id);
     $user = Auth::user();
     $logro->users()->syncWithoutDetaching($user->id);
     }  

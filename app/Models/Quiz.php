@@ -44,10 +44,11 @@ class Quiz extends Model
         return $this->hasOne(QuizLogro::class);
     }
 
+    /*
     public function quiz()
     {
         return $this->hasOne(LeccionesQuiz::class);
-    }
+    }*/
 
     
 }
