@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Logros;
+use App\Models\LogroUser;
+use Illuminate\Support\Facades\Auth;
 
 class LogroApiController extends Controller
 {
@@ -91,6 +93,19 @@ class LogroApiController extends Controller
     {
         $logros = Logros::find($id);
         $logros->delete();
+        return response()->json($logros);
+    }
+
+    public function mostrarLogrosUser()
+    {
+        $user = Auth::user();
+        $logrosuser = LogroUser::where('user_id', $user->id)->get();
+        $logros = array();
+        foreach ($logrosuser as $logrouser) {
+            $logro = Logros::where('id', $logrouser->logro_id)->first();
+            array_push($logros, $logro);
+        }
+        
         return response()->json($logros);
     }
 }
