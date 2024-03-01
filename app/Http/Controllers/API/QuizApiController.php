@@ -22,7 +22,7 @@ class QuizApiController extends Controller
         ->all();
         /*$logros_ = Logros::where('user_id', $user->id)->pluck('id')
         ->all();*/
-        //return response()->json($logros, 200);
+        //kreturn response()->json($logros, 200);
 
         
         $quizlogros = QuizLogro::whereIn('logro_id', $logros)->pluck('quiz_id')
