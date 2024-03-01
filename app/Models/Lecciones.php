@@ -14,8 +14,8 @@ class Lecciones extends Model
     protected $fillable = [
         "Nombre_de_la_leccion",
         "Contenido",
-        "Lecciones_Diarias_realizadas",
-        "Lecciones_Totales_realizadas",
+        //"Lecciones_Diarias_realizadas",
+        //"Lecciones_Totales_realizadas",
         "Tipo_de_leccion",
         
     ];
@@ -28,8 +28,5 @@ class Lecciones extends Model
         return $this->hasOne(Quiz::class);
     }
 
-    public function users()
-    {
-        return $this->belongsToMany(User::class);
-    }
+    
 }
