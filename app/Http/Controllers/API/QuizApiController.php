@@ -15,6 +15,17 @@ use Illuminate\Support\Facades\DB;
 
 class QuizApiController extends Controller
 {
+
+    public function indexadmin()
+    {
+        
+        $quiz = Quiz::all();
+        return response()->json($quiz);
+            
+
+    }
+
+
     public function index()
     {
         $user = Auth::user();
@@ -39,10 +50,26 @@ class QuizApiController extends Controller
         $quizs->Titulo= $request->Titulo;
         $quizs->Duracion= $request->Duracion;
         $quizs->Pregunta= $request->Pregunta;
-        $quizs->Respuesta1= $request->Respuesta1;
+        $quizs->RespuestaCorrecta= $request->RespuestaCorrecta;
         $quizs->Respuesta2= $request->Respuesta2;
         $quizs->Respuesta3= $request->Respuesta3;
         $quizs->Respuesta4= $request->Respuesta4;
+
+        $quizs->Pregunta2= $request->Pregunta2;
+        $quizs->RespuestaCorrecta2= $request->RespuestaCorrecta2;
+        $quizs->Respuesta5= $request->Respuesta5;
+        $quizs->Respuesta6= $request->Respuesta6;
+        $quizs->Respuesta7= $request->Respuesta7;
+
+        $quizs->Pregunta3= $request->Pregunta3;
+        $quizs->RespuestaCorrecta3= $request->RespuestaCorrecta3;
+        $quizs->Respuesta8= $request->Respuesta8;
+        $quizs->Respuesta9= $request->Respuesta9;
+        $quizs->Respuesta10= $request->Respuesta10;
+
+        
+
+
         $quizs->save();
         return response()->json($quizs, 200);
         //return redirect()->route('quizs.index');
@@ -51,12 +78,27 @@ class QuizApiController extends Controller
 
     public function update(Request $request, $id){
         $quizs = Quiz::find($id);
+        $quizs->Titulo= $request->Titulo;
         $quizs->Duracion= $request->Duracion;
         $quizs->Pregunta= $request->Pregunta;
-        $quizs->Respuesta1= $request->Respuesta1;
+        $quizs->RespuestaCorrecta= $request->RespuestaCorrecta;
         $quizs->Respuesta2= $request->Respuesta2;
         $quizs->Respuesta3= $request->Respuesta3;
         $quizs->Respuesta4= $request->Respuesta4;
+
+        $quizs->Pregunta2= $request->Pregunta2;
+        $quizs->RespuestaCorrecta2= $request->RespuestaCorrecta2;
+        $quizs->Respuesta5= $request->Respuesta5;
+        $quizs->Respuesta6= $request->Respuesta6;
+        $quizs->Respuesta7= $request->Respuesta7;
+
+        $quizs->Pregunta3= $request->Pregunta3;
+        $quizs->RespuestaCorrecta3= $request->RespuestaCorrecta3;
+        $quizs->Respuesta8= $request->Respuesta8;
+        $quizs->Respuesta9= $request->Respuesta9;
+        $quizs->Respuesta10= $request->Respuesta10;
+
+        
         $quizs->save();
         return response()->json($user);
         
