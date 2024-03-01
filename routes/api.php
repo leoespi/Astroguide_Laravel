@@ -50,7 +50,13 @@ Route::post('register', [AuthenticationController::class, 'register']);
 Route::post('login', [AuthenticationController::class, 'login']);
 Route::post('quiz/validarTerminacion', [QuizApiController::class, 'validarTerminacion'])->middleware('auth:api');
 
+
 Route::get('/logroUser', [LogroApiController::class, 'mostrarLogrosUser'])->middleware('auth:api');
 
 Route::get('/logroUser',[LogroApiController::class, 'logroUser'])->middleware('auth:api');
+
+
+Route::get('/logroUser',[LogroApiController::class, 'logroUser'])->middleware('auth:api');
+
+Route::get('/logroUser', [LogroApiController::class, 'mostrarLogrosUser'])->middleware('auth:api');
 
