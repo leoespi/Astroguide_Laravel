@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Auth;
 
 class UserApiController extends Controller
 {
@@ -17,6 +17,12 @@ class UserApiController extends Controller
     public function index()
     {
         $user = User::all();
+        return response()->json($user, 200);
+    }
+
+    public function indexUser()
+    {
+        $user = Auth::user();
         return response()->json($user, 200);
     }
 
