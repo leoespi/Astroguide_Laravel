@@ -38,7 +38,7 @@ class LogroApiController extends Controller
         $logros = new Logros();
         $logros->Nombre_del_Logro = $request->Nombre_del_Logro;
         $logros->Rareza = $request->Rareza;
-        $logros->user_id = $request->user_id;
+        
         $logros->save();
         return response()->json($logros, 200);
     }
@@ -51,10 +51,14 @@ class LogroApiController extends Controller
      */
     public function show($id)
     {
-        $logros = Logros::find($id);
-        return response()->json($logros, 200);
+        $logro = Logro::find($id);
+    
+        if (!$logro) {
+            return response()->json(['message' => 'Logro no encontrado'], 404);
+        }
+    
+        return response()->json($logro, 200);
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -63,7 +67,7 @@ class LogroApiController extends Controller
      */
     public function edit($id)
     {
-        
+
     }
 
     /**
@@ -78,7 +82,7 @@ class LogroApiController extends Controller
         $logros = Logros::find($id);
         $logros->Nombre_del_Logro = $request->Nombre_del_Logro;
         $logros->Rareza = $request->Rareza;
-        $logros->user_id = $request->user_id;
+        
         $logros->save() ;
         return response()->json($logros);
     }

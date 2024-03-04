@@ -23,7 +23,7 @@ class CreateLeccionesTable extends Migration
             //$table->foreignId('user_id');
             //$table->foreign('user_id')->references('id')->on('users');
 
-            //$table->timestamps();
+            //$table->timestamps() ;
         });
     }
 

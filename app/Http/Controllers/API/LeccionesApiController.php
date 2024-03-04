@@ -35,7 +35,7 @@ class LeccionesApiController extends Controller
         $lecciones->Tipo_de_leccion= $request->Tipo_de_leccion;
         $lecciones->save();
         return response()->json($lecciones, 200);
-        $timestamps = false;
+        
     }
 
     /**
@@ -66,7 +66,7 @@ class LeccionesApiController extends Controller
         //$lecciones->Lecciones_Totales_realizadas= $request->Lecciones_Totales_realizadas;
         $lecciones->Tipo_de_leccion= $request->Tipo_de_leccion;
         $lecciones->save();
-        $timestamps = false;
+        
         return response()->json($lecciones);
     }
 
@@ -80,7 +80,7 @@ class LeccionesApiController extends Controller
     {
         $lecciones = Lecciones::find($id);
         $lecciones->delete();
-        $timestamps = false;
+        
         return response()->json($lecciones);
     }
 }
