@@ -43,11 +43,11 @@ Route::get('/quiz/admin', [QuizApiController::class, 'indexadmin']);
 
 
 
-Route::get('/feeds', [FeedController::class, 'index'])->middleware('auth:sanctum');
-Route::post('/feed/store', [FeedController::class, 'store'])->middleware('auth:sanctum');
-Route::post('/feed/like/{feed_id}', [FeedController::class, 'likePost'])->middleware('auth:sanctum');
-Route::post('/feed/comment/{feed_id}', [FeedController::class, 'comment'])->middleware('auth:sanctum');
-Route::get('/feed/comments/{feed_id}', [FeedController::class, 'getComments'])->middleware('auth:sanctum');
+Route::get('/feeds', [FeedController::class, 'index'])->middleware('auth:api');
+Route::post('/feed/store', [FeedController::class, 'store'])->middleware('auth:api');
+Route::post('/feed/like/{feed_id}', [FeedController::class, 'likePost'])->middleware('auth:api');
+Route::post('/feed/comment/{feed_id}', [FeedController::class, 'comment'])->middleware('auth:api');
+Route::get('/feed/comments/{feed_id}', [FeedController::class, 'getComments'])->middleware('auth:api');
 
 Route::get('/test', function () {
     return response([
@@ -62,4 +62,8 @@ Route::post('quiz/validarTerminacion', [QuizApiController::class, 'validarTermin
 Route::get('/logroUser', [LogroApiController::class, 'mostrarLogrosUser'])->middleware('auth:api');
 
 Route::get('/logroUser',[LogroApiController::class, 'logroUser'])->middleware('auth:api');
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
